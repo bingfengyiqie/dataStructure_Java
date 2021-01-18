@@ -23,7 +23,6 @@ public class BinarySortTreeDemo {
 
         //测试一下删除叶子结点
 
-
         binarySortTree.delNode(12);
 
 
@@ -99,7 +98,7 @@ class BinarySortTree {
         if (root == null) {
             return;
         } else {
-            //1.需求先去找到要删除的结点  targetNode
+            //首先找到要删除的结点  targetNode
             Node targetNode = search(value);
             //如果没有找到要删除的结点
             if (targetNode == null) {
@@ -111,20 +110,19 @@ class BinarySortTree {
                 return;
             }
 
-            //去找到targetNode的父结点
+            //找到targetNode的父结点
             Node parent = searchParent(value);
             //如果要删除的结点是叶子结点
             if (targetNode.left == null && targetNode.right == null) {
                 //判断targetNode 是父结点的左子结点，还是右子结点
                 if (parent.left != null && parent.left.value == value) { //是左子结点
                     parent.left = null;
-                } else if (parent.right != null && parent.right.value == value) {//是由子结点
+                } else if (parent.right != null && parent.right.value == value) {//是右子结点
                     parent.right = null;
                 }
             } else if (targetNode.left != null && targetNode.right != null) { //删除有两颗子树的节点
                 int minVal = delRightTreeMin(targetNode.right);
                 targetNode.value = minVal;
-
 
             } else { // 删除只有一颗子树的结点
                 //如果要删除的结点有左子结点
@@ -151,9 +149,7 @@ class BinarySortTree {
                         root = targetNode.right;
                     }
                 }
-
             }
-
         }
     }
 
